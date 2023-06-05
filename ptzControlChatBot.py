@@ -2,7 +2,8 @@ from onvif import ONVIFCamera
 import pytchat
 
 class Preset:
-    chatCommand = "" #Chat command to trigger preset
+    name = "" #Preset name
+    command = "" #Chat command to trigger preset
     x = 0 #Destination X Coordinate for PTZ Camera Movement
     y = 0 #Destination Y Coordinate for PTZ Camera Movement
     zoom = 0 #Destination Zoom Value for PTZ Camera
@@ -15,7 +16,7 @@ cameraUser = "admin" #PTZ Camera Username
 cameraPassword = "admin" #PTZ Camera Password
 
 preset1 = Preset() #Test preset
-preset1.chatCommand = "/bot preset1"
+preset1.command = "preset1"
 preset1.x = 10
 preset1.y = 10
 preset1.zoom = 100
@@ -27,7 +28,7 @@ ptz = camera.create_ptz_service()
 media_profile = media.GetProfiles()[0]
 
 def main():
-    if (getChat() == preset1.chatCommand):
+    if (getChat() == ("/bot" + preset1.command)):
         moveCamera(preset1)
 
 def moveCamera(Preset):
